@@ -1,6 +1,6 @@
 //============================================================
 //
-// 3D制作　モデル処理[bird.cpp]
+// 3D制作　敵（鳥）の処理[bird.cpp]
 // AUTHOR:Sasaki Rikuto
 //
 //============================================================
@@ -55,9 +55,6 @@ void lnitBird(void)
 	LPDIRECT3DDEVICE9 pDevice = GetDevice();
 	int nCntBird;
 	g_nBirdCounter = 0;
-	////モデル情報
-	//BirdLinfo * pBird;
-	//pBird = GetBirdLinfo();
 
 	D3DXLoadMeshFromX("data/MODEL/bard1.x",
 		D3DXMESH_SYSTEMMEM,
@@ -77,13 +74,13 @@ void lnitBird(void)
 		&g_BirdInfo[1].nNumMatBird,
 		&g_BirdInfo[1].MeshBird);
 
-	int nNumVtx;									//頂点数
-	DWORD sizeFVF;									//頂点フォーマットのサイズ
-	BYTE*pVtxBuff;									//頂点バッファのポインタ
+	int nNumVtx;	//頂点数
+	DWORD sizeFVF;	//頂点フォーマットのサイズ
+	BYTE*pVtxBuff;	//頂点バッファのポインタ
 
 	for (nCntBird = 0; nCntBird < MAX_BIRD; nCntBird++)
 	{
-		g_Bird[nCntBird].pos = D3DXVECTOR3(0.0f, 0.0f, 0.0f);	//位置の初期化
+		g_Bird[nCntBird].pos = D3DXVECTOR3(0.0f, 0.0f, 0.0f);		//位置の初期化
 		g_Bird[nCntBird].rot = D3DXVECTOR3(0.0f, 0.0f, 0.0f);		//向きの初期化
 		g_Bird[nCntBird].move = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 		g_Bird[nCntBird].rotDest = D3DXVECTOR3(0.0f, 0.0f, 0.0f);	//目的角度の初期化
@@ -155,11 +152,10 @@ void lnitBird(void)
 		//頂点バッファのアンロック
 		g_BirdInfo[nCntBird].MeshBird->UnlockVertexBuffer();
 	}
-	BirdSet();
 }
 
 //============================================================
-//　終了処理
+//鳥の終了処理
 //============================================================
 void UninitBird(void)
 {
@@ -176,7 +172,7 @@ void UninitBird(void)
 }
 
 //============================================================
-// モデルのアップデート処理
+// 鳥のアップデート処理
 //============================================================
 void UpdateBird(void)
 {
@@ -212,7 +208,7 @@ void UpdateBird(void)
 }
 
 //============================================================
-// モデルの描画処理
+// 鳥の描画処理
 //============================================================
 void DrawBird(void)
 {
@@ -262,7 +258,7 @@ void DrawBird(void)
 	pDevice->SetMaterial(&matDef);
 }
 //============================================================
-// モデルの当たり判定
+// 鳥の当たり判定
 //============================================================
 bool CollisionBird(
 	D3DXVECTOR3* pPos,				//現在の位置
@@ -401,7 +397,9 @@ bool CollisionBird(
 
 	return bIsLanding;
 }
-//鳥の設定処理
+//============================================================
+// 鳥の設定処理
+//============================================================
 void SetBird(D3DXVECTOR3 pos, D3DXVECTOR3 rot, D3DXVECTOR3 move, int nType)	//type追加
 {
 	for (int nCntBird = 0; nCntBird < MAX_BIRD; nCntBird++)
@@ -421,9 +419,4 @@ void SetBird(D3DXVECTOR3 pos, D3DXVECTOR3 rot, D3DXVECTOR3 move, int nType)	//ty
 			break;		//(for文を抜ける)
 		}
 	}
-}
-
-void BirdSet(void)
-{
-
 }

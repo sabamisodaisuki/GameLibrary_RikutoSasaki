@@ -1,3 +1,9 @@
+//============================================================
+//
+// 3D制作　ハイスコア処理[HighScore.cpp]
+// AUTHOR:Sasaki Rikuto
+//
+//============================================================
 #include "main.h"
 #include "player.h"
 #include "input.h"
@@ -7,14 +13,16 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
-// マクロ定義
-#define TEXTURE_U				(10)	//テクスチャ等分
+
+//============================================================
 //マクロ定義
+//============================================================
+#define TEXTURE_U				(10)	//テクスチャ等分
 #define MAX_WORD	(128)
 #define MAX_SELECT  (3)
 #define MAX_QUIZ    (10)
 
-//クイズ定義
+//定義
 typedef struct
 {
 	char aQuestion[MAX_WORD];		//問題文
@@ -22,17 +30,20 @@ typedef struct
 	int nAnswer;
 }Quizlnfo;
 
+//============================================================
 //グローバル変数
+//============================================================
 LPDIRECT3DTEXTURE9 g_pTextureHigeScore = NULL;			//テクスチャへのポインタ
 LPDIRECT3DVERTEXBUFFER9 g_pVtxBuffHigeScore = NULL;		//頂点バッファへのポインタ	
 D3DXVECTOR3 g_posHigeScore;								//スコアの位置
-int g_nHigeScore;										//スコアの値
-														//グローバル変数宣言
-Quizlnfo g_aQuizinfo[MAX_QUIZ];		//クイズ情報構造体
-int g_aAnswer[MAX_QUIZ];			//ユーザー解答番号
+int g_nHigeScore;										//スコアの値														//グローバル変数宣言
+Quizlnfo g_aQuizinfo[MAX_QUIZ];							//クイズ情報構造体
+int g_aAnswer[MAX_QUIZ];								//ユーザー解答番号
 
 
-													//スコアの初期化処理
+//============================================================
+//ハイスコアの初期化処理
+//============================================================
 void lnitHigeScore(void)
 {
 	LPDIRECT3DDEVICE9 pDevice;
@@ -103,7 +114,9 @@ void lnitHigeScore(void)
 	SetHigeScore(g_nHigeScore, D3DXVECTOR3(1020.0f, 50.0f, 0.0f), (20.0f), (10.0f));
 }
 
-//スコアの終了処理
+//============================================================
+//ハイスコアの終了処理
+//============================================================
 void UninitHigeScore(void)
 {
 	//テクスチャの破棄
@@ -120,12 +133,17 @@ void UninitHigeScore(void)
 	}
 
 }
-//スコアの更新処理
+//============================================================
+//ハイスコアの更新処理
+//============================================================
 void UpdateHigeScore(void)
 {
 
 }
-//スコアの描画処理
+
+//============================================================
+//ハイスコアの描画処理
+//============================================================
 void DrawHigeScore(void)
 {
 	LPDIRECT3DDEVICE9 pDevice;
@@ -150,7 +168,9 @@ void DrawHigeScore(void)
 	}
 }
 
-//スコアの設定処理
+//============================================================
+//ハイスコアの設定処理
+//============================================================
 void SetHigeScore(int nScore, D3DXVECTOR3 pos, float fWidth, float fHeight)
 {
 

@@ -1,3 +1,9 @@
+//============================================================
+//
+// 3D制作　リザルト処理[result.cpp]
+// AUTHOR:Sasaki Rikuto
+//
+//============================================================
 #include "main.h"
 #include "player.h"
 #include "input.h"
@@ -11,13 +17,19 @@
 #include"trophy.h"
 #include"Gettrophy.h"
 #include"getscore.h"
+
+//============================================================
 //グローバル変数
+//============================================================
 LPDIRECT3DTEXTURE9 g_pTextureRESULT = NULL;//テクスチャへのポインタ
 LPDIRECT3DVERTEXBUFFER9 g_pVtxBuffRESULT = NULL;//頂点バッファへのぽんった
 int g_nRESULTScore;
 int g_Counter;
 int g_GetTrophy;
-//リザルト画面の初期化処理
+
+//============================================================
+//リザルトの初期化処理
+//============================================================
 void lnitRESULT(void)
 {
 	LPDIRECT3DDEVICE9 pDevice;
@@ -93,7 +105,9 @@ void lnitRESULT(void)
 	SetGetTrophy(g_GetTrophy, D3DXVECTOR3(950.0f,470.0f, 0.0f), (50.0f), (30.0f));
 }
 
-//リザルト画面の終了処理
+//============================================================
+//リザルトの終了処理
+//============================================================
 void UninitRESULT(void)
 {
 	//サウンドの停止
@@ -121,7 +135,9 @@ void UninitRESULT(void)
 	}
 }
 
-//リザルト画面の更新処理
+//============================================================
+//リザルトの更新処理
+//============================================================
 void UpdateRESULT(void)
 {
 	g_Counter++;
@@ -141,14 +157,7 @@ void UpdateRESULT(void)
 		AddGetTrophy(1);
 		AddGetScore(13);
 	}
-	//if (g_Counter == 10)
-	//{
-	//	SetTrophy(D3DXVECTOR3(SCREEN_WIDTH, 60.0f, 0.0f), D3DXVECTOR3(-5.0f, 0.0f, 0.0f), 7);
-	//	//サウンドの再生
-	//	PlaySound(SOUND_LABEL_SE_fanfare);
-	//	AddScore(100);
-	//	AddGetTrophy(1);
-	//}
+	
 	// フェード情報の取得
 	FADE fade = GetFade();
 
@@ -167,7 +176,9 @@ void UpdateRESULT(void)
 	}
 }
 
+//============================================================
 //リザルト画面の描画処理
+//============================================================
 void DrawRESULT(void)
 {
 	LPDIRECT3DDEVICE9 pDevice;

@@ -1,3 +1,9 @@
+//============================================================
+//
+// 3D制作　フェードの処理[fade.cpp]
+// AUTHOR:Sasaki Rikuto
+//
+//============================================================
 #include "main.h"
 #include "player.h"
 #include "input.h"
@@ -8,15 +14,18 @@
 #include"Score.h"
 #include"Time.h"
 #include"fade.h"
-
-//グローバル変数
+//============================================================
+// グローバル変数
+//============================================================
 LPDIRECT3DVERTEXBUFFER9 g_pVtxBuffFade = NULL;		//頂点バッファへのポインタ
 FADE g_fade;							//フェード状態
 MODE g_modeNext;						//次の画面モード
 D3DXCOLOR g_colorFade;					//ポリゴン（フェード）の色
 //LPDIRECT3DDEVICE9 pDevice;
 
-//フェードの初期化処理
+//============================================================
+// フェードの初期化処理
+//============================================================
 void lnitFade(MODE modeNext)
 {
 	LPDIRECT3DDEVICE9 pDevice;
@@ -70,16 +79,11 @@ void lnitFade(MODE modeNext)
 
 }
 
-//タイトル画面の終了処理
+//============================================================
+// フェードの終了処理
+//============================================================
 void UninitFade(void)
 {
-	////テクスチャの破棄
-	//if (g_pTextureFade != NULL)
-	//{
-	//	g_pTextureFade->Release();
-	//	g_pTextureFade = NULL;
-	//}
-
 	//頂点バッファの破棄
 	if (g_pVtxBuffFade != NULL)
 	{
@@ -88,58 +92,58 @@ void UninitFade(void)
 	}
 }
 
-//フェードの更新処理
+//============================================================
+// フェードの更新処理
+//============================================================
 void UpdateFade(void)
 {
-	//if (g_fade != FADE_NONE)
-	{
-		if (g_fade == FADE_IN)
+	if (g_fade == FADE_IN)
 
-		{//フェードイン状態
-			g_colorFade.a -= 0.01f;//ポリゴンを透明にしていく
+	{//フェードイン状態
+		g_colorFade.a -= 0.01f;//ポリゴンを透明にしていく
 
-			if (g_colorFade.a <= 0.0f)
-			{
-				g_colorFade.a = 0.0f;
-				g_fade = FADE_NONE;		//何もしていない状態に
-			}
-
-		}
-		else if (g_fade == FADE_OUT)
-		{//フェードアウト状態
-			g_colorFade.a += 0.07f;//ポリゴンを不透明にしていく
-
-			if (g_colorFade.a >= 1.0f)
-			{
-				g_colorFade.a = 1.0f;
-				g_fade = FADE_IN;		//フェードイン状態に
-
-				//モードの設定（次の画面に移行）
-				SetMode(g_modeNext);
-			}
-
+		if (g_colorFade.a <= 0.0f)
+		{
+			g_colorFade.a = 0.0f;
+			g_fade = FADE_NONE;		//何もしていない状態に
 		}
 
-		//頂点カラーの設定
-
-		VERTEX_2D*pVtx;
-
-		//頂点バッファをロックし、頂点情報へポインタ取得
-		g_pVtxBuffFade->Lock(0, 0, (void**)&pVtx, 0);
-
-		//頂点カラーの描画
-		pVtx[0].col = D3DXCOLOR(g_colorFade);
-		pVtx[1].col = D3DXCOLOR(g_colorFade);
-		pVtx[2].col = D3DXCOLOR(g_colorFade);
-		pVtx[3].col = D3DXCOLOR(g_colorFade);
-
-		//頂点バッファアンロック
-		g_pVtxBuffFade->Unlock();
-
-		
 	}
+	else if (g_fade == FADE_OUT)
+	{//フェードアウト状態
+		g_colorFade.a += 0.07f;//ポリゴンを不透明にしていく
+
+		if (g_colorFade.a >= 1.0f)
+		{
+			g_colorFade.a = 1.0f;
+			g_fade = FADE_IN;		//フェードイン状態に
+
+			//モードの設定（次の画面に移行）
+			SetMode(g_modeNext);
+		}
+
+	}
+
+	//頂点カラーの設定
+
+	VERTEX_2D*pVtx;
+
+	//頂点バッファをロックし、頂点情報へポインタ取得
+	g_pVtxBuffFade->Lock(0, 0, (void**)&pVtx, 0);
+
+	//頂点カラーの描画
+	pVtx[0].col = D3DXCOLOR(g_colorFade);
+	pVtx[1].col = D3DXCOLOR(g_colorFade);
+	pVtx[2].col = D3DXCOLOR(g_colorFade);
+	pVtx[3].col = D3DXCOLOR(g_colorFade);
+
+	//頂点バッファアンロック
+	g_pVtxBuffFade->Unlock();
 }
-//フェードの描画処理
+
+//============================================================
+// フェードの描画処理
+//============================================================
 void DrawFade(void)
 {
 
@@ -161,7 +165,9 @@ void DrawFade(void)
 	pDevice->DrawPrimitive(D3DPT_TRIANGLESTRIP, 0, 2);
 }
 	
-//フェードの設定処理
+//============================================================
+// フェードの設定処理
+//============================================================
 void SetFade(MODE modeNext)
 {
 	g_fade = FADE_OUT;							//フェードアウト状態に
@@ -169,7 +175,9 @@ void SetFade(MODE modeNext)
 	g_colorFade = D3DXCOLOR(0.0f, 0.0f, 0.0f, 0.0f);//黒いポリゴンを透明に
 }
 
-//フェードの取得
+//============================================================
+// フェードの取得
+//============================================================
 FADE GetFade(void)
 {
 	return g_fade;

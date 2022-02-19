@@ -50,7 +50,5 @@ bool CollisionEnemy(D3DXVECTOR3*pPos,//現在の位置
 	D3DXVECTOR3*pSize);				//サイズ
 									//ブロックの設定処理
 void SetEnemy(D3DXVECTOR3 pos, D3DXVECTOR3 rot,D3DXVECTOR3 move, int nType);
-void EnemySet(void);
-
 #endif
 

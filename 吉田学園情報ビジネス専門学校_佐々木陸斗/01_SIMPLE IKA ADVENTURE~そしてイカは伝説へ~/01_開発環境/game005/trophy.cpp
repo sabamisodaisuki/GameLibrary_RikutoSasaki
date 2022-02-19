@@ -1,3 +1,9 @@
+//============================================================
+//
+// 3D制作　トロフィー[trophy.cpp]
+// AUTHOR:Sasaki Rikuto
+//
+//============================================================
 #include "main.h"
 #include "player.h"
 #include "input.h"
@@ -8,20 +14,23 @@
 #include"result.h"
 #include"Gettrophy.h"
 #include"getscore.h"
+//============================================================
 //グローバル変数
+//============================================================
 LPDIRECT3DTEXTURE9 g_apTextureTROPHY[NUM_TROPHY] = { NULL };	//テクスチャへのポインタ
 LPDIRECT3DVERTEXBUFFER9 g_pVtxBuffTROPHY = NULL;			//頂点バッファポインタ
 TROPHY g_aTROPHY[MAX_TROPHY];								//敵の情報
 int g_nTROPHYCouter;										//敵のカウント
 
-
-														//鳥の取得
+//鳥の取得
 TROPHY*GetTROPHY(void)
 {
 	return &g_aTROPHY[0];
 }
 
-//鳥の初期化処理
+//============================================================
+//トロフィーの初期化処理
+//============================================================
 void lnitTrophy(void)
 {
 	LPDIRECT3DDEVICE9 pDevice;
@@ -125,7 +134,10 @@ void lnitTrophy(void)
 	g_pVtxBuffTROPHY->Unlock();
 	lnitGetScore();
 }
-//ポリゴンの終了処理
+
+//============================================================
+//トロフィーの処理処理
+//============================================================
 void UninitTrophy(void)
 {
 	int nCntTROPHY;
@@ -148,7 +160,9 @@ void UninitTrophy(void)
 	}
 
 }
-//鳥の更新処理
+//============================================================
+//トロフィーの更新処理
+//============================================================
 void UpdateTrophy(void)
 {
 	UpdateGetScore();
@@ -196,7 +210,9 @@ void UpdateTrophy(void)
 	g_pVtxBuffTROPHY->Unlock();
 }
 
-//鳥の描画処理
+//============================================================
+//トロフィー描画処理
+//============================================================
 void DrawTrophy(void)
 {
 	LPDIRECT3DDEVICE9 pDevice;
@@ -226,7 +242,9 @@ void DrawTrophy(void)
 	}
 }
 
-//鳥の設定処理
+//============================================================
+//トロフィーの設定処理
+//============================================================
 void SetTrophy(D3DXVECTOR3 pos, D3DXVECTOR3 move, int nType)
 {
 	int nCntTROPHY;

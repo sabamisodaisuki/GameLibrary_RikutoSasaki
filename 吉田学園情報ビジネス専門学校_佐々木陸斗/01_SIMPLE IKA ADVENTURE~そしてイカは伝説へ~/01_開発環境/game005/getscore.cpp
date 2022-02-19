@@ -1,23 +1,36 @@
+//============================================================
+//
+// 3D制作　スコアゲットの処理[getscore.cpp]
+// AUTHOR:Sasaki Rikuto
+//
+//============================================================
 #include "main.h"
 #include "player.h"
 #include "input.h"
 #include"bullet.h"
 #include"Score.h"
 
-// マクロ定義
+//============================================================
+//マクロ定義
+//============================================================
 #define TEXTURE_U				(10)	//テクスチャ等分
 
+//============================================================
 //グローバル変数
+//============================================================
 LPDIRECT3DTEXTURE9 g_pTextureGetScore = NULL;			//テクスチャへのポインタ
 LPDIRECT3DVERTEXBUFFER9 g_pVtxBuffGetScore = NULL;		//頂点バッファへのポインタ	
 D3DXVECTOR3 g_posGetScore;								//スコアの位置
 int g_nGetScore;										//スコアの値
 
-													//スコアの初期化処理
+//============================================================
+//ゲットスコアの初期化
+//============================================================
 void lnitGetScore(void)
 {
 	LPDIRECT3DDEVICE9 pDevice;
 	int nCntScore;
+
 	//デバイスの取得
 	pDevice = GetDevice();
 
@@ -74,7 +87,9 @@ void lnitGetScore(void)
 	g_pVtxBuffGetScore->Unlock();
 }
 
-//スコアの終了処理
+//============================================================
+//ゲットスコアの終了処理
+//============================================================
 void UninitGetScore(void)
 {
 	//テクスチャの破棄
@@ -91,12 +106,18 @@ void UninitGetScore(void)
 	}
 
 }
-//スコアの更新処理
+
+//============================================================
+//ゲットスコアの更新処理
+//============================================================
 void UpdateGetScore(void)
 {
 
 }
-//スコアの描画処理
+
+//============================================================
+//ゲットスコアの描画処理
+//============================================================
 void DrawGetScore(void)
 {
 	LPDIRECT3DDEVICE9 pDevice;
@@ -121,7 +142,9 @@ void DrawGetScore(void)
 	}
 }
 
-//スコアの設定処理
+//============================================================
+//ゲットスコアの設定処理
+//============================================================
 void SetGetScore(int nScore, D3DXVECTOR3 pos, float fWidth, float fHeight)
 {
 
@@ -162,7 +185,9 @@ void SetGetScore(int nScore, D3DXVECTOR3 pos, float fWidth, float fHeight)
 	//頂点バッファアンロック
 	g_pVtxBuffGetScore->Unlock();
 }
-//スコアの加算処理
+//============================================================
+//ゲットスコアの加算処理
+//============================================================
 void AddGetScore(int nValue)
 {
 	int aPosTexU[MAX_Score];	//各桁の数字を格納
@@ -193,6 +218,7 @@ void AddGetScore(int nValue)
 	//頂点バッファアンロック
 	g_pVtxBuffGetScore->Unlock();
 }
+
 int GetgetScore(void)
 {
 	return g_nGetScore;

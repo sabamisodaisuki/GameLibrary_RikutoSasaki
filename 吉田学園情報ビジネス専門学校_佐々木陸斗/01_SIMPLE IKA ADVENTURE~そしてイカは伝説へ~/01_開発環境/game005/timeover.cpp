@@ -1,3 +1,9 @@
+//============================================================
+//
+// 3D制作　タイムオーバーリザルト処理[timeover.cpp]
+// AUTHOR:Sasaki Rikuto
+//
+//============================================================
 #include "main.h"
 #include "player.h"
 #include "input.h"
@@ -10,11 +16,16 @@
 #include"HighScore.h"
 #include"trophy.h"
 
+//============================================================
 //グローバル変数
+//============================================================
 LPDIRECT3DTEXTURE9 g_pTextureTimeover = NULL;//テクスチャへのポインタ
 LPDIRECT3DVERTEXBUFFER9 g_pVtxBuffTimeover = NULL;//頂点バッファへのぽんった
 int g_nTimeoverScore;
-//リザルト画面の初期化処理
+
+//============================================================
+//タイムオーバーの初期化処理
+//============================================================
 void lnitTimeover(void)
 {
 	LPDIRECT3DDEVICE9 pDevice;
@@ -84,7 +95,9 @@ void lnitTimeover(void)
 	SetScore(g_nTimeoverScore, D3DXVECTOR3(550.0f, 355.0f, 0.0f), (50.0f), (30.0f));
 }
 
-//リザルト画面の終了処理
+//============================================================
+//タイムオーバーの終了
+//============================================================
 void UninitTimeover(void)
 {
 	//サウンドの停止
@@ -93,8 +106,6 @@ void UninitTimeover(void)
 	//スコア
 	UninitScore();
 
-	/*UninitHigeScore();
-	*/
 	//テクスチャの破棄
 	if (g_pTextureTimeover != NULL)
 	{
@@ -109,13 +120,13 @@ void UninitTimeover(void)
 	}
 }
 
-//リザルト画面の更新処理
+//============================================================
+//タイムオーバーの更新処理
+//============================================================
 void UpdateTimeover(void)
 {
 	//スコア
 	UpdateScore();
-
-	/*UpdateHigeScore();*/
 
 	// フェード情報の取得
 	FADE fade = GetFade();
@@ -136,7 +147,9 @@ void UpdateTimeover(void)
 
 }
 
-//リザルト画面の描画処理
+//============================================================
+//タイムオーバーの描画処理
+//============================================================
 void DrawTimeover(void)
 {
 	LPDIRECT3DDEVICE9 pDevice;
@@ -159,5 +172,4 @@ void DrawTimeover(void)
 	//スコア呼び出し
 	DrawScore();
 
-	//DrawHigeScore();
 }

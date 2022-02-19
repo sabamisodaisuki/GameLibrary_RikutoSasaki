@@ -1,6 +1,6 @@
 //============================================================
 //
-// 3D制作　モデル処理[Enemy.cpp]
+// 3D制作　エネミー（車）処理[Enemy.cpp]
 // AUTHOR:Sasaki Rikuto
 //
 //============================================================
@@ -44,7 +44,6 @@ typedef struct
 
 }EnemyLinfo;
 
-////↓Enemyinfo構造体の配列を宣言する
 D3DXMATRIX g_mtxWorldEnemy;
 Enemy g_Enemy[MAX_Enemy];
 EnemyLinfo g_EnemyInfo[NUM_Enemy];
@@ -52,7 +51,7 @@ int GetCount;
 int DetCount;
 
 //============================================================
-//　モデルの初期化処理
+//　エネミーの初期化処理
 //============================================================
 void lnitEnemy(void)
 {
@@ -165,15 +164,13 @@ void lnitEnemy(void)
 		//頂点バッファのアンロック
 		g_EnemyInfo[nCntEnemy].MeshEnemy->UnlockVertexBuffer();
 	}
-	EnemySet();
 }
 
 //============================================================
-//　終了処理
+//エネミーの終了処理
 //============================================================
 void UninitEnemy(void)
 {
-	
 	for (int nCntEnemy = 0; nCntEnemy < NUM_Enemy; nCntEnemy++)
 	{ //テクスチャの破棄
 	  //メッシュの破棄
@@ -186,7 +183,7 @@ void UninitEnemy(void)
 }
 
 //============================================================
-// モデルのアップデート処理
+// エネミーのアップデート処理
 //============================================================
 void UpdateEnemy(void)
 {
@@ -215,14 +212,14 @@ void UpdateEnemy(void)
 
 			if (g_Enemy[nCntEnemy].pos.z <= -1000.0f)
 
-			{//画面外に鳥が出た時
+			{//画面外に出た時
 				g_Enemy[nCntEnemy].bUse = false;
 			}
 	}
 }
 
 //============================================================
-// モデルの描画処理
+// エネミーの描画処理
 //============================================================
 void DrawEnemy(void)
 {
@@ -272,7 +269,7 @@ void DrawEnemy(void)
 	pDevice->SetMaterial(&matDef);
 }
 //============================================================
-// モデルの当たり判定
+// エネミーの当たり判定
 //============================================================
 bool CollisionEnemy(
 	D3DXVECTOR3* pPos,				//現在の位置
@@ -421,7 +418,9 @@ bool CollisionEnemy(
 
 	return bIsLanding;
 }
-//敵の設定処理
+//============================================================
+// エネミーの設定処理
+//============================================================
 void SetEnemy(D3DXVECTOR3 pos, D3DXVECTOR3 rot, D3DXVECTOR3 move, int nType)	//type追加
 {
 	for (int nCntEnemy = 0; nCntEnemy < MAX_Enemy; nCntEnemy++)
@@ -441,9 +440,4 @@ void SetEnemy(D3DXVECTOR3 pos, D3DXVECTOR3 rot, D3DXVECTOR3 move, int nType)	//t
 			break;		//(for文を抜ける)
 		}
 	}
-}
-
-void EnemySet(void)
-{
-	
 }

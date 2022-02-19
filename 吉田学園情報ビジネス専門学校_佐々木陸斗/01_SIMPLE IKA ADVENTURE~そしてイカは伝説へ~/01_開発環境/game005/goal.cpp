@@ -1,6 +1,6 @@
 //============================================================
 //
-// 3D制作　モデル処理[Goal.cpp]
+// 3D制作　ゴール処理[Goal.cpp]
 // AUTHOR:Sasaki Rikuto
 //
 //============================================================
@@ -43,7 +43,7 @@ Goal g_Goal[MAX_MODEL];
 GoalLinfo g_GoalInfo[NUM_MODEL];
 
 //============================================================
-//　モデルの初期化処理
+//ゴールの初期化処理
 //============================================================
 void lnitGoal(void)
 {
@@ -168,7 +168,7 @@ void UninitGoal(void)
 }
 
 //============================================================
-// モデルのアップデート処理
+// ゴールのアップデート処理
 //============================================================
 void UpdateGoal(void)
 {
@@ -176,7 +176,7 @@ void UpdateGoal(void)
 }
 
 //============================================================
-// モデルの描画処理
+// ゴールの描画処理
 //============================================================
 void DrawGoal(void)
 {
@@ -186,12 +186,8 @@ void DrawGoal(void)
 	D3DMATERIAL9 matDef;//マテリアルの保存
 	D3DXMATERIAL *pMat;//マテリアルの保管
 
-					   //現在のマテリアル
+	 //現在のマテリアル
 	pDevice->GetMaterial(&matDef);
-
-	////モデル情報
-	//GoalLinfo * pGoal;
-	//pGoal = GetGoalLinfo();
 
 	for (int nCntGoal = 0; nCntGoal < MAX_MODEL; nCntGoal++)
 	{
@@ -230,7 +226,7 @@ void DrawGoal(void)
 	pDevice->SetMaterial(&matDef);
 }
 //============================================================
-// モデルの当たり判定
+// ゴールの当たり判定
 //============================================================
 bool CollisionGoal(
 	D3DXVECTOR3* pPos,				//現在の位置
@@ -319,8 +315,11 @@ bool CollisionGoal(
 
 	return bIsLanding;
 }
-//ブロックの設定処理
-void SetGoal(D3DXVECTOR3 pos, D3DXVECTOR3 rot, int nType)	//type追加
+
+//============================================================
+//ゴールの設定処理
+//============================================================
+void SetGoal(D3DXVECTOR3 pos, D3DXVECTOR3 rot, int nType)	
 {
 	for (int nCntGoal = 0; nCntGoal < MAX_MODEL; nCntGoal++)
 	{
@@ -345,7 +344,5 @@ void GoalSet(void)
 	SetGoal(D3DXVECTOR3(500.0f, 10.0f, 60.0f), D3DXVECTOR3(0.0f, 0.0f, 0.0f), 0);//壁奥
 
 	SetGoal(D3DXVECTOR3(4700.0f, 0.0f, -450.0f), D3DXVECTOR3(0.0f, 0.0f, 0.0f), 1);//床3
-
-	//SetGoal(D3DXVECTOR3(4000.0f, 0.0f, -450.0f), D3DXVECTOR3(0.0f, 0.0f, 0.0f), 6);//ゴール
 }
 

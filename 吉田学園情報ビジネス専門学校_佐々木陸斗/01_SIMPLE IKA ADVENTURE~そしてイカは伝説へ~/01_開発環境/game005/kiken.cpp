@@ -1,3 +1,9 @@
+//============================================================
+//
+// 3D制作　注意書き[Kiken.cpp]
+// AUTHOR:Sasaki Rikuto
+//
+//============================================================
 #include "main.h"
 #include "player.h"
 #include "input.h"
@@ -7,13 +13,16 @@
 #include"sound.h"
 #include"fade.h"
 
-
+//============================================================
 //グローバル変数
+//============================================================
 LPDIRECT3DTEXTURE9 g_pTextureKiken = NULL;//テクスチャへのポインタ
 LPDIRECT3DVERTEXBUFFER9 g_pVtxBuffKiken = NULL;//頂点バッファへのぽんった
 
 
-											   //タイトル画面の初期化処理
+//============================================================
+//注意書き初期化処理
+//============================================================
 void lnitKiken(void)
 {
 	LPDIRECT3DDEVICE9 pDevice;
@@ -22,18 +31,13 @@ void lnitKiken(void)
 	//サウンドの再生
 	PlaySound(SOUND_LABEL_BGMTITLE2);
 
-
-
 	//デバイスの取得
 	pDevice = GetDevice();
-
 
 	//テクスチャの読み込み
 	D3DXCreateTextureFromFile(pDevice,
 		"data/TEXTURE/Kiken.jpg",//TITOL.png"
 		&g_pTextureKiken);
-
-
 
 	//頂点バッファの作成
 	pDevice->CreateVertexBuffer(sizeof(VERTEX_2D) * 4,
@@ -46,7 +50,7 @@ void lnitKiken(void)
 
 	VERTEX_2D*pVtx;		//頂点情報へポインタ
 
-						//頂点バッファをロックし、頂点情報へポインタ取得
+	//頂点バッファをロックし、頂点情報へポインタ取得
 	g_pVtxBuffKiken->Lock(0, 0, (void**)&pVtx, 0);
 
 	//頂点座標の設定
@@ -77,7 +81,9 @@ void lnitKiken(void)
 	g_pVtxBuffKiken->Unlock();
 }
 
-//タイトル画面の終了処理
+//============================================================
+//注意書き終了処理
+//============================================================
 void UninitKiken(void)
 {
 	//サウンドの停止
@@ -98,7 +104,9 @@ void UninitKiken(void)
 	}
 }
 
-//タイトル画面の更新処理
+//============================================================
+//注意書き更新処理
+//============================================================
 void UpdateKiken(void)
 {
 	// フェード情報の取得
@@ -115,7 +123,9 @@ void UpdateKiken(void)
 	}
 }
 
-//タイトル画面の描画処理
+//============================================================
+//注意書き描画
+//============================================================
 void DrawKiken(void)
 {
 	LPDIRECT3DDEVICE9 pDevice;

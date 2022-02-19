@@ -1,19 +1,31 @@
+//============================================================
+//
+// 3D制作　トロフィー獲得数の処理[Gettrophy.cpp]
+// AUTHOR:Sasaki Rikuto
+//
+//============================================================
 #include "main.h"
 #include "player.h"
 #include "input.h"
 #include"bullet.h"
 #include"Gettrophy.h"
 
-// マクロ定義
+//============================================================
+//マクロ定義
+//============================================================
 #define TEXTURE_U				(10)	//テクスチャ等分
 
+//============================================================
 //グローバル変数
+//============================================================
 LPDIRECT3DTEXTURE9 g_pTextureGettrophy = NULL;			//テクスチャへのポインタ
 LPDIRECT3DVERTEXBUFFER9 g_pVtxBuffGettrophy = NULL;		//頂点バッファへのポインタ	
 D3DXVECTOR3 g_posGetTrophy;								//スコアの位置
 int g_nGetTrophy;										//スコアの値
 
-														//スコアの初期化処理
+//============================================================
+//トロフィーゲットの初期化
+//============================================================
 void lnitGetTrophy(void)
 {
 	LPDIRECT3DDEVICE9 pDevice;
@@ -74,7 +86,9 @@ void lnitGetTrophy(void)
 	g_pVtxBuffGettrophy->Unlock();
 }
 
-//スコアの終了処理
+//============================================================
+//トロフィーゲットの終了処理
+//============================================================
 void UninitGetTrophy(void)
 {
 	//テクスチャの破棄
@@ -91,12 +105,17 @@ void UninitGetTrophy(void)
 	}
 
 }
-//スコアの更新処理
+//============================================================
+//トロフィーゲットの更新処理
+//============================================================
 void UpdateGetTrophy(void)
 {
 
 }
-//スコアの描画処理
+
+//============================================================
+//トロフィーゲットの描画処理
+//============================================================
 void DrawGetTrophy(void)
 {
 	LPDIRECT3DDEVICE9 pDevice;
@@ -121,7 +140,9 @@ void DrawGetTrophy(void)
 	}
 }
 
-//スコアの設定処理
+//============================================================
+//トロフィーゲットの設定処理
+//============================================================
 void SetGetTrophy(int nTrophy, D3DXVECTOR3 pos, float fWidth, float fHeight)
 {
 
@@ -162,7 +183,9 @@ void SetGetTrophy(int nTrophy, D3DXVECTOR3 pos, float fWidth, float fHeight)
 	//頂点バッファアンロック
 	g_pVtxBuffGettrophy->Unlock();
 }
-//スコアの加算処理
+//============================================================
+//トロフィーゲットの加算処理
+//============================================================
 void AddGetTrophy(int nValue)
 {
 	int aPosTexU[MAX_GETTROPHY];	//各桁の数字を格納
@@ -193,6 +216,7 @@ void AddGetTrophy(int nValue)
 	//頂点バッファアンロック
 	g_pVtxBuffGettrophy->Unlock();
 }
+
 int GetgetTrophy(void)
 {
 	return g_nGetTrophy;
